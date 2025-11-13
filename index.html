@@ -891,6 +891,7 @@
             font-size: 30px;
             margin-top: 0;
             margin-bottom: 20px;
+            padding-right: 35px;
         }
 
         .modal-description {
@@ -1745,11 +1746,32 @@
         const { useState, useEffect, useRef } = React;
 
         // --- ДАННЫЕ (без изменений, кроме добавления большего количества партнеров) ---
-        const slideshowData = [
-            { id: 1, title: "Наша Миссия", text: "Создать новую систему цифрового доверия, которая приходит на смену традиционным централизованным решениям. Мы предоставляем модульную экосистему для гарантии достоверности данных без передачи вашей конфиденциальной информации."},
-            { id: 2, title: "Акция месяца", text: "Скидка 20% на все модули при годовой подписке! Успейте до конца месяца.", linkTo: "#" }, // Убран якорь #тарифы
-            { id: 3, title: "Новый Тариф 'AI Fortress'", text: "Максимальная защита данных на базе блокчейна, усиленная интеллектуальной системой ИИ для проактивного мониторинга и мгновенного реагирования на киберугрозы.", linkTo: "#модули" },
-            { id: 4, title: "Специальное предложение", text: "Бесплатная установка и настройка всех систем Prime Fort для новых клиентов!", linkTo: "#модули" } // Убран якорь #тарифы
+            const slideshowData = [
+            { 
+                id: 1, 
+                title: "Наша Миссия", 
+                /* ИЗМЕНЕНИЕ: Добавлен перенос строки */
+                text: "Создать новую систему цифрового доверия, которая приходит на смену традиционным централизованным решениям. Мы предоставляем модульную экосистему для гарантии достоверности данных без передачи вашей конфиденциальной информации." 
+            },
+            { 
+                id: 2, 
+                title: "Акция месяца", 
+                text: "Скидка 10% на все тарифы для новых клиентов. Успейте до конца месяца.", 
+                openModal: true, 
+                details: "<strong>Специальные предложения:</strong><ul><li>Получите 3 месяца использования в подарок при оформлении годовой подписки на любой тариф. Ваша общая экономия составит 25% (931 500₽ за 15 месяцев).</li><li>Все новые клиенты получают скидку 10% на первую покупку любого тарифа.</li><li>Совершите первые 5000 транзакций абсолютно бесплатно, чтобы оценить скорость и надежность нашей платформы.</li></ul>"
+            },
+
+            { 
+                id: 3, 
+                /* ИЗМЕНЕНИЕ: Добавлен span с цветом */
+                title: "Новый Тариф <span style='color: #345c7c;'>AI Fortress</span>", 
+                text: "Максимальная защита данных на базе блокчейна, усиленная интеллектуальной системой ИИ для проактивного мониторинга и мгновенного реагирования на киберугрозы.", 
+                linkTo: "#модули" 
+            },
+            { 
+                id: 4, 
+                title: "Специальное предложение", 
+                text: "Бесплатная установка и настройка всех систем Prime Fort для новых клиентов!", linkTo: "#модули" } // Убран якорь #тарифы
         ];
         const keyProductsData = [
             { 
@@ -1877,7 +1899,7 @@
                 audience: "Все клиенты (основа платформы)",
                 format: "SaaS или on-prem",
                 advantages: "Гарантированная неизменность логов; соответствие базовым требованиям к безопасности; обеспечивает юридическую силу транзакций; обязательный старт для всех клиентов.",
-                price: 30000,
+                price: 103500,
                 paymentType: "Месячная Подписка", // <-- ИЗМЕНЕНИЕ
                 category: "base_security"
             },
@@ -1890,7 +1912,7 @@
                 audience: "Юридические компании, IT-компании, авторы контента",
                 format: "Облако / гибрид",
                 advantages: "Доказуемость авторства и защита прав; автоматизация лицензирования; юридическая достоверность всех контрактов и документов.",
-                price: 45000,
+                price: 983250,
                 paymentType: "Разовая Лицензия", // <-- ИЗМЕНЕНИЕ
                 category: "finance_legal"
             },
@@ -1903,7 +1925,7 @@
                 audience: "Финансовый и промышленный сектор",
                 format: "On-prem / гибрид",
                 advantages: "Ускорение прохождения регуляторного аудита; проверяемость действий сотрудников; автоматическая фиксация отчётов и соответствие стандартам.",
-                price: 55000,
+                price: 1345500,
                 paymentType: "Годовая Подписка", // <-- ИЗМЕНЕНИЕ
                 category: "base_security"
             },
@@ -1916,7 +1938,7 @@
                 audience: "Банки, финтех, маркетплейсы",
                 format: "Приватная сеть",
                 advantages: "Автоматические прозрачные выплаты; токенизация активов; быстрая интеграция с финансовыми системами; гарантированное исполнение SLA.",
-                price: 60000,
+                price: 13196,
                 paymentType: "Плата за Транзакцию (месячный расчет 50000 транзакций)", // <-- ИЗМЕНЕНИЕ
                 category: "finance_legal"
             },
@@ -1929,7 +1951,7 @@
                 audience: "Заводы, энергетика, логистика",
                 format: "On-prem + облако",
                 advantages: "Контроль и аутентификация IoT-устройств; неизменяемая фиксация телеметрии; защита каналов связи в индустриальной среде.",
-                price: 65000,
+                price: 9315,
                 paymentType: "Плата за Устройство (годовой расчет за 1 устройство)", // <-- ИЗМЕНЕНИЕ
                 category: "industry"
             },
@@ -1942,7 +1964,7 @@
                 audience: "AI-компании, исследовательские центры",
                 format: "Облако / гибрид",
                 advantages: "Контроль версий и аудит моделей ИИ; защита алгоритмов; этический аудит и фиксация происхождения обучающих данных.",
-                price: 50000,
+                price: 1164375,
                 paymentType: "Годовая Подписка", // <-- ИЗМЕНЕНИЕ
                 category: "ai_analytics"
             },
@@ -1955,7 +1977,7 @@
                 audience: "Все компании с критичными данными",
                 format: "Облако / API",
                 advantages: "Проверка целостности данных в реальном времени; предотвращение подмены информации; полный контроль истории изменений.",
-                price: 35000,
+                price: 9056,
                 paymentType: "Плата за Транзакцию (месячный расчет 50000 транзакций)", // <-- ИЗМЕНЕНИЕ
                 category: "base_security"
             },
@@ -1968,7 +1990,7 @@
                 audience: "Крупные предприятия",
                 format: "On-prem / облако",
                 advantages: "Комплексное управление безопасностью и доверием; полный функционал (IoT, Юриспруденция, ИИ, Финансы); максимальная гибкость и масштабируемость.",
-                price: 150000,
+                price: 31050000,
                 paymentType: "Разовая Лицензия", // <-- ИЗМЕНЕНИЕ
                 category: "enterprise"
             },
@@ -1981,7 +2003,7 @@
                 audience: "Отраслевые предприятия",
                 format: "Гибрид",
                 advantages: "Глубокая интеграция с цифровыми двойниками (CAD, PLM); максимальное соответствие узкоспециализированным регуляторным нормам; адаптация к уникальной архитектуре заказчика.",
-                price: 200000, 
+                price: 14438250, 
                 paymentType: "Разовая Лицензия", // <-- ИЗМЕНЕНИЕ
                 category: "industry"
             },
@@ -1994,7 +2016,7 @@
                 audience: "Бизнес-аналитика, консалтинг, финансы",
                 format: "SaaS",
                 advantages: "Проверяемые отчёты, подтвержденные блокчейном; защищённые аналитические модели; возможность делиться выводами без раскрытия конфиденциальной информации.",
-                price: 48000,
+                price: 802125,
                 paymentType: "Годовая Подписка", // <-- ИЗМЕНЕНИЕ
                 category: "ai_analytics"
             }
@@ -2370,11 +2392,26 @@
         // --- КОНЕЦ КОМПОНЕНТА ГРАФА ---
 
 
-        // Компонент Slideshow (для первого слайд-шоу) (без изменений)
-        const Slideshow = ({ slides, initialAnimationClass }) => { 
+// Компонент Slideshow (для первого слайд-шоу)
+        // ИСПРАВЛЕНИЕ: Добавлены onShowModules и onShowTariffs для навигации
+        const Slideshow = ({ slides, initialAnimationClass, onShowModules, onShowTariffs }) => { 
             const [current, setCurrent] = useState(0);
             const [timerResetKey, setTimerResetKey] = useState(0);
             const totalSlides = slides.length;
+
+            // Состояние для модального окна
+            const [isModalOpen, setIsModalOpen] = useState(false);
+            const [selectedSlide, setSelectedSlide] = useState(null);
+
+            // Функции управления модальным окном
+            const openModal = (slide) => {
+                setSelectedSlide(slide);
+                setIsModalOpen(true);
+            };
+            const closeModal = () => {
+                setIsModalOpen(false);
+                setSelectedSlide(null);
+            };
 
             useEffect(() => {
                 const timer = setInterval(() => {
@@ -2395,44 +2432,81 @@
                 setCurrent(prev => (prev === 0 ? totalSlides - 1 : prev - 1));
                 setTimerResetKey(prev => prev + 1);
             };
+            
+            // <<< НОВАЯ ФУНКЦИЯ ДЛЯ ОБРАБОТКИ КЛИКА >>>
+            const handleSlideLinkClick = (slide) => {
+                if (slide.openModal) {
+                    openModal(slide); // Открываем модальное окно (для Акции)
+                    return;
+                } 
+                
+                if (slide.linkTo === "#модули" && onShowModules) {
+                    onShowModules(); // <-- РЕШЕНИЕ: Вызываем функцию перехода
+                    return;
+                }
+                
+                if (slide.linkTo === "#тарифы" && onShowTariffs) {
+                    onShowTariffs(); // Для перехода на Тарифы (если понадобится)
+                    return;
+                }
+
+                if (slide.linkTo) {
+                    // Переход по якорю на главной странице (например, #о-нас)
+                    window.location.hash = slide.linkTo; 
+                }
+            };
 
             return (
-                <div className={`slideshow-wrapper ${initialAnimationClass}`}> 
-                    <div
-                        className="slideshow-track"
-                        style={{ transform: `translateX(-${current * 100}%)` }}
-                    >
-                        {slides.map(slide => (
-                            <div className="slideshow-block" key={slide.id}>
-                                <h3 className="slideshow-title">{slide.title}</h3>
-                                <p className="slideshow-text">{slide.text}</p>
-                                {slide.linkTo && (
-                                    <div className="slideshow-footer">
-                                        <a href={slide.linkTo} className="slideshow-button">
-                                            Подробнее
-                                        </a>
-                                    </div>
-                                )}
+                <>
+                    <div className={`slideshow-wrapper ${initialAnimationClass}`}> 
+                        <div
+                            className="slideshow-track"
+                            style={{ transform: `translateX(-${current * 100}%)` }}
+                        >
+                            {slides.map(slide => (
+                                <div className="slideshow-block" key={slide.id}>
+                                    <h3 className="slideshow-title" dangerouslySetInnerHTML={{ __html: slide.title }}></h3>
+                                    <p className="slideshow-text" dangerouslySetInnerHTML={{ __html: slide.text }}></p>
+                                    
+                                    {/* Логика кнопки "Подробнее" (для модального окна или ссылки) */}
+                                    { (slide.linkTo || slide.openModal) && (
+                                        <div className="slideshow-footer">
+                                            <span 
+                                                className="slideshow-button"
+                                                style={{ cursor: 'pointer' }}
+                                                onClick={() => handleSlideLinkClick(slide)} // Используем новую функцию
+                                            >
+                                                Подробнее
+                                            </span>
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                        
+                        <div className="slideshow-dots">
+                            <div className="slideshow-nav-arrow arrow-left" onClick={prevSlide}>
+                                arrow_back_ios
                             </div>
-                        ))}
-                    </div>
-                    
-                    <div className="slideshow-dots">
-                        <div className="slideshow-nav-arrow arrow-left" onClick={prevSlide}>
-                            arrow_back_ios
-                        </div>
-                        {slides.map((_, index) => (
-                            <span
-                                key={index}
-                                className={`dot ${index === current ? 'active' : ''}`}
-                                onClick={() => goToSlide(index)}
-                            ></span>
-                        ))}
-                        <div className="slideshow-nav-arrow arrow-right" onClick={nextSlide}>
-                            arrow_forward_ios
+                            {slides.map((_, index) => (
+                                <span
+                                    key={index}
+                                    className={`dot ${index === current ? 'active' : ''}`}
+                                    onClick={() => goToSlide(index)}
+                                ></span>
+                            ))}
+                            <div className="slideshow-nav-arrow arrow-right" onClick={nextSlide}>
+                                arrow_forward_ios
+                            </div>
                         </div>
                     </div>
-                </div>
+
+                    <ProductModal 
+                        isOpen={isModalOpen} 
+                        onClose={closeModal} 
+                        product={selectedSlide} 
+                    />
+                </>
             );
         };
         
@@ -2577,8 +2651,8 @@
                         <div className="slideshow-track" style={{ transform: `translateX(-${current * 100}%)` }} >
                             {slides.map(slide => (
                                 <div className="slideshow-block" key={slide.id}>
-                                    <h3 className="slideshow-title">{slide.title}</h3>
-                                    <p className="slideshow-text">{slide.text}</p>
+                                    <h3 className="slideshow-title" dangerouslySetInnerHTML={{ __html: slide.title }}></h3>
+                                    <p className="slideshow-text" dangerouslySetInnerHTML={{ __html: slide.text }}></p>
                                     {slide.linkTo ? (
                                         <span onClick={() => openModal(slide)} className="slideshow-button centered-slideshow-button" style={{cursor: "pointer"}}>
                                             Подробнее
@@ -3394,7 +3468,8 @@
                         </div>
                         
                         {/* 2. ПЕРВОЕ СЛАЙДШОУ (Акция, Миссия) */}
-                        <Slideshow slides={slideshowData} initialAnimationClass={animationClass} />
+                        <Slideshow slides={slideshowData} initialAnimationClass={animationClass} onShowModules={showModules} 
+                            onShowTariffs={showTariffs} />
 
                         {/* 3. БЛОК ИНФОРМАЦИИ О ПРОДУКТЕ */}
                         <AnimateOnScroll>
