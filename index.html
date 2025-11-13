@@ -42,6 +42,7 @@
             flex-direction: column; 
             transition: background-image 0.3s ease-out;
             overflow-x: hidden;
+            position: relative;
         }
         
         /* Добавлено: #root должен занимать оставшееся место */
@@ -55,6 +56,8 @@
             flex-grow: 1;
             display: flex;
             flex-direction: column;
+             position: relative;
+    z-index: 1;
         }
 
 
@@ -189,7 +192,7 @@
             position: absolute;
             top: 0px;
             right: 0px;
-            background-color: var(--success-color);
+            background-color: #50be3d;
             color: white;
             border-radius: 50%;
             width: 20px;
@@ -221,9 +224,20 @@
 
        .container.cart-page-container {
     max-width: none; /* Убираем ограничение по ширине */
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
     overflow-x: hidden; /* Скрываем горизонтальный скролл для всего контейнера */
+}
+
+/* Увеличение отступов только для страницы корзины */
+.view-cart .container.cart-page-container {
+    padding-left: 70px !important;
+    padding-right: 70px !important;
+}
+
+.view-tariffs .container.cart-page-container {
+    padding-left: 65px;
+    padding-right: 65px;
 }
 
 
@@ -595,7 +609,7 @@
         
         /* === Стили для кнопок в модальном окне/корзине/карточках === */
         .button-primary {
-            background-color: #0066cc;
+            background-color: #5c5c5e;
             color: #fff;
             padding: 10px 17px; 
             border: none;
@@ -608,7 +622,7 @@
             white-space: nowrap;
         }
         .button-primary:hover {
-            background-color: #0056b3;
+            background-color: #1d1d1f;
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0, 113, 227, 0.4);
         }
@@ -636,6 +650,50 @@
         .button-back:hover {
             background-color: var(--nav-button-hover-bg);
         }
+
+        /* Кнопка оформления заказа в корзине */
+.cart-total-block .button-primary {
+    background-color: #5c5c5e; /* как learn-more-button */
+}
+
+.cart-total-block .button-primary:hover {
+    background-color: #16435a; /* как --learn-more-hover-bg */
+    box-shadow: 0 5px 15px rgba(22, 67, 90, 0.5); /* как learn-more-button:hover */
+}
+
+/* Кнопка в модальном окне чека */
+.receipt-modal-button {
+    background-color: #5c5c5e;
+    color: #fff;
+    padding: 10px 17px;
+    border: none;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s, box-shadow 0.3s;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+
+.receipt-modal-button:hover {
+    background-color: #16435a;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(22, 67, 90, 0.5);
+}
+
+        /* Для страницы модулей */
+.view-modules .button-primary:hover {
+    background-color: #165414;
+    box-shadow: 0 5px 15px rgba(17, 46, 15, 0.4);
+}
+
+/* Для страницы тарифов */
+.view-tariffs .button-primary:hover {
+    background-color: #165414;
+    box-shadow: 0 5px 15px rgba(17, 46, 15, 0.4);
+}
 
 
         /* --- СТИЛИЗАЦИЯ КНОПКИ ПЛЮС --- */
@@ -735,11 +793,11 @@
             justify-content: center;
             align-items: center;
             min-height: 300px;
-            background-color: #1e1e1e; /* Темно-серый фон */
+            background-color: #345c7c ; /* Темно-серый фон */
             border-radius: 40px; 
             transition: transform 0.4s ease-out;
             padding: 20px; 
-            border: 2px solid #505050; /* Граница */
+            
         }
         .product-info-block:hover .svg-container {
             transform: scale(1.02);
@@ -766,7 +824,7 @@
         
         /* ИЗМЕНЕНИЕ: СТИЛЬ ЛИНИЙ */
         .graph-link { 
-            stroke: #86878c; /* Цвет линий, как предложил пользователь */
+            stroke: #f5f5f7; /* Цвет линий, как предложил пользователь */
             stroke-opacity: 0.7;
             stroke-width: 1.5;
         }
@@ -891,7 +949,6 @@
             color: var(--text-color-light);
             text-shadow: 0 1px 3px rgba(0,0,0,0.5);
             margin-bottom: 30px;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
             padding-bottom: 15px;
         }
         .cart-page-container .empty-cart-text {
@@ -934,7 +991,7 @@
             margin: 0;
             font-size: 16px;
             font-weight: 500;
-            color: var(--success-color);
+            color: #16435a;
         }
         
         .cart-total-block {
@@ -1028,16 +1085,16 @@
         }
         
         .module-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 3 колонки */
-            gap: 30px;
-            margin-top: 30px; 
-            margin-bottom: 80px; 
+             display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px; /* Уменьшено с 30px */
+    margin-top: 30px; 
+    margin-bottom: 80px; 
         }
 
         .module-card {
             background-color: rgba(255, 255, 255, 1.0);
-            padding: 30px;
+            padding: 20px 25px; 
             border-radius: 40px;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
             display: flex;
@@ -1049,7 +1106,7 @@
             opacity: 0; 
             transform: translateY(50px);
             transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            min-height: 300px; /* Фиксируем высоту для однородности */
+            min-height: 250px;  /* Фиксируем высоту для однородности */
             position: relative;
         }
         .module-card:hover {
@@ -1088,12 +1145,7 @@
             gap: 15px; 
         }
         
-        .module-card .card-price {
-            font-size: 18px;
-            font-weight: 600;
-            color: #0066cc;
-            white-space: nowrap; /* Чтобы цена не переносилась */
-        }
+        
         .module-card:nth-child(4n+1) { transition-delay: 0.1s; }
         .module-card:nth-child(4n+2) { transition-delay: 0.2s; }
         .module-card:nth-child(4n+3) { transition-delay: 0.3s; }
@@ -1104,10 +1156,18 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr); /* 2 колонки */
             gap: 30px;
-            margin-top: 30px; 
+            margin-top: 0px; 
             margin-bottom: 80px; 
             grid-auto-rows: 1fr; /* <<< ДОБАВЛЕНО: Карточки будут одинаковой высоты */
         }
+
+        .view-tariffs .tariff-grid {
+    margin-top: 5px !important;
+}
+
+.view-tariffs .tariff-filter-container {
+    margin-bottom: 20px !important;
+}
 
         .tariff-card {
             background-color: rgba(255, 255, 255, 1.0);
@@ -1139,7 +1199,7 @@
         .tariff-price {
             font-size: 28px;
             font-weight: 600;
-            color: #0066cc;
+            color: #3d3425;
             margin-bottom: 20px;
         }
         
@@ -1233,18 +1293,19 @@
 }
 
         .tariff-filter-button:hover {
-            background-color: var(--nav-button-hover-bg);
-    border-color: var(--text-color-light);
-    transform: translateY(-2px); /* Эффект подъема при наведении */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Увеличили тень при наведении */
+             background-color: #52503b; /* Новый цвет при наведении */
+    border-color: #52503b; /* Чтобы граница тоже меняла цвет */
+    color: #fff; /* Белый текст для контраста */
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(143, 136, 94, 0.3); /* Тень в тон цвета */
         }
 
         .tariff-filter-button.active {
-            background-color: var(--success-color);
+            background-color: #52503b;
     color: #fff;
-    border-color: var(--success-color);
+    border-color: #52503b;
     transform: translateY(-1px);
-    box-shadow: 0 5px 15px rgba(0, 113, 227, 0.4); /* Синяя тень для активной кнопки */
+    box-shadow: 0 5px 15px rgba(143, 136, 94, 0.4);
         }
         /* <<< КОНЕЦ СТИЛЕЙ ФИЛЬТРА >>> */
 
@@ -1264,8 +1325,8 @@
             to { transform: translateX(0); opacity: 1; }
         }
         .toast-notification {
-            background-color: var(--success-color);
-            color: white;
+            background-color: #50be3d;
+            color: #ffffff;
             padding: 15px 20px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
@@ -1326,10 +1387,30 @@
         
 /* НОВЫЕ СТИЛИ ДЛЯ ПОДВАЛА (Footer-new) */
 .footer-new {
-    background: #1d1d1f; /* Темный фон для контраста */
+     background: #1d1d1f;
     color: #f5f5f7;
     padding: 40px 0 0;
     font-size: 14px;
+    border-top: none;
+    position: relative;
+    z-index: -1;
+    
+}
+
+.footer-new::before {
+    content: '';
+    position: absolute;
+    top: -50px; /* Высота градиента */
+    left: 0;
+    width: 100%;
+    height: 80px; /* Высота градиента */
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        #1d1d1f 100%
+    );
+    pointer-events: none;
+    z-index: 0;
 }
 
 .footer-content-new {
@@ -1337,7 +1418,10 @@
     grid-template-columns: repeat(4, 1fr); /* 4 колонки */
     gap: 30px;
     padding-bottom: 30px;
-    border-bottom: 1px solid rgba(245, 245, 247, 0.1);
+    /* Убираем border-bottom который был здесь */
+    border-bottom: none;
+    position: relative;
+    z-index: 1; /* Чтобы контент был поверх тени */
 }
 
 .footer-column h4 {
@@ -1373,6 +1457,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 15px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .footer-bottom-row .copyright {
@@ -1380,12 +1465,12 @@
 }
 
 .footer-bottom-row .legal-links a {
-    color: rgba(245, 245, 247, 0.6);
+    color: rgba(245, 245, 247, 0.8);
     margin-left: 0 15px;
 }
 
 .footer-bottom-row .legal-links span {
-    color: rgba(245, 245, 247, 0.3);
+    color: rgba(245, 245, 247, 0.6);
     margin: 0 10px; 
 }
 
@@ -1494,8 +1579,9 @@
         .form-input:focus,
         .form-textarea:focus {
             outline: none;
-            border-color: var(--success-color);
-            box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.2);
+    border-color: #5c5c5e;
+    box-shadow: 0 0 0 3px rgba(92, 92, 94, 0.3); /* Тень цвета #5c5c5e */
+
         }
 
         .form-textarea {
@@ -1504,7 +1590,7 @@
         }
         
         .form-submit-button {
-            background-color: #0066cc;
+            background-color: #5c5c5e;
             color: #fff;
             padding: 12px 25px; 
             border: none;
@@ -1520,7 +1606,7 @@
         }
         
         .form-submit-button:hover {
-            background-color: #0056b3;
+            background-color: #16435a;
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0, 113, 227, 0.4);
         }
@@ -1581,13 +1667,13 @@
         }
         
         .contact-details-item span.material-symbols-rounded {
-            color: #0066cc;
+            color: #0c6aa7;
             font-size: 24px;
         }
         
         .contact-details-item a {
             text-decoration: none;
-            color: #0066cc;
+            color: #0c6aa7;
             font-weight: 500;
             transition: opacity 0.3s;
         }
@@ -2140,24 +2226,24 @@
                 svg.selectAll("*").remove();
                 
                 const nodesData = [
-                    { id: "PF", group: 1, name: "Prime Fort", color: '#72b0ab' }, 
+                    { id: "PF", group: 1, name: "Prime Fort", color: '#4CAF50' }, 
                     { id: "Cyber", group: 2, name: "Safety", color: '#f5f5f7' },
                     { id: "Physical", group: 2, name: "Protection", color: '#f5f5f7' },
                     { id: "Data", group: 2, name: "Data", color: '#f5f5f7' },
                     { id: "AI", group: 2, name: "AI/Analytics", color: '#f5f5f7' },
-                    { id: "NodeA", group: 3, name: "", color: '#86878c' },
-                    { id: "NodeB", group: 3, name: "", color: '#86878c' },
-                    { id: "NodeC", group: 3, name: "", color: '#86878c' },
-                    { id: "NodeD", group: 3, name: "", color: '#86878c' },
-                    { id: "NodeE", group: 3, name: "", color: '#86878c' },
-                    { id: "NodeF", group: 3, name: "", color: '#86878c' },
-                    { id: "NodeG", group: 3, name: "", color: '#86878c' },
-                    { id: "NodeH", group: 3, name: "", color: '#86878c' },
-                    { id: "NodeI", group: 3, name: "", color: '#86878c' },
-                    { id: "NodeJ", group: 3, name: "", color: '#86878c' },
-                    { id: "NodeK", group: 3, name: "", color: '#86878c' },
-                    { id: "NodeL", group: 3, name: "", color: '#86878c' },
-                    { id: "NodeM", group: 3, name: "", color: '#86878c' },
+                    { id: "NodeA", group: 3, name: "", color: '#f5f5f7' },
+                    { id: "NodeB", group: 3, name: "", color: '#f5f5f7' },
+                    { id: "NodeC", group: 3, name: "", color: '#f5f5f7' },
+                    { id: "NodeD", group: 3, name: "", color: '#f5f5f7' },
+                    { id: "NodeE", group: 3, name: "", color: '#f5f5f7' },
+                    { id: "NodeF", group: 3, name: "", color: '#f5f5f7' },
+                    { id: "NodeG", group: 3, name: "", color: '#f5f5f7' },
+                    { id: "NodeH", group: 3, name: "", color: '#f5f5f7' },
+                    { id: "NodeI", group: 3, name: "", color: '#f5f5f7' },
+                    { id: "NodeJ", group: 3, name: "", color: '#f5f5f7' },
+                    { id: "NodeK", group: 3, name: "", color: '#f5f5f7' },
+                    { id: "NodeL", group: 3, name: "", color: '#f5f5f7' },
+                    { id: "NodeM", group: 3, name: "", color: '#f5f5f7' },
                     { id: "Green1", group: 4, name: "", color: '#4CAF50' }, 
                     { id: "Green2", group: 4, name: "", color: '#4CAF50' },
                     { id: "Green3", group: 4, name: "", color: '#4CAF50' },
@@ -2405,7 +2491,7 @@
                                 <span className="receipt-total-amount">{total.toLocaleString('ru-RU')} ₽</span>
                             </div>
 
-                            <button className="button-primary" onClick={onClose} style={{marginTop: '30px', float: 'right'}}>
+                            <button className="button-primary receipt-modal-button" onClick={onClose} style={{marginTop: '30px', float: 'right'}}>
                                 Закрыть
                             </button>
                         </div>
@@ -2738,9 +2824,6 @@
                 return (
                     <div className="page-container">
                         <div className="container cart-page-container">
-                            <button className="button-back" onClick={onShowHome}>
-                                &larr; Назад к главной
-                            </button>
                             
                             <h2>Ваша корзина</h2>
 
@@ -2799,9 +2882,7 @@
             return (
                 <div className="page-container">
                     <div className="container cart-page-container">
-                        <button className="button-back" onClick={onShowHome}>
-                            &larr; Назад к главной
-                        </button>
+                        
                         
                         <ModulesCatalog modules={modules} />
                     </div>
@@ -2864,9 +2945,7 @@
             return (
                 <div className="page-container">
                     <div className="container cart-page-container">
-                        <button className="button-back" onClick={onShowHome}>
-                            &larr; Назад к главной
-                        </button>
+                        
                         
                         <AnimateOnScroll>
                             <div className="module-section-title-container" id="тарифы-каталог">
@@ -3366,28 +3445,25 @@
                         </AnimateOnScroll>
                         
                         <div className="audience-card-container">
-                            <AnimateOnScroll>
-                                <div className="audience-card">
-                                    <span className="material-symbols-rounded" style={{fontSize: '50px', color: '#5c5c5e', marginBottom: '10px'}}>apartment</span>
-                                    <h4>Малый и Средний Бизнес</h4>
-                                    <p>Готовая, модульная защита без привлечения штатных специалистов. Простая интеграция и низкая стоимость владения. </p>
-                                </div>
-                            </AnimateOnScroll>
-                            <AnimateOnScroll>
-                                <div className="audience-card">
-                                    <span className="material-symbols-rounded" style={{fontSize: '50px', color: '#5c5c5e', marginBottom: '10px'}}>business_center</span>
-                                    <h4>Крупный Корпоративный Сегмент</h4>
-                                    <p>Централизованное управление безопасностью, глубокий анализ угроз и полное соответствие международным комплаенс-требованиям. </p>
-                                </div>
-                            </AnimateOnScroll>
-                            <AnimateOnScroll>
-                                <div className="audience-card">
-                                    <span className="material-symbols-rounded" style={{fontSize: '50px', color: '#5c5c5e', marginBottom: '10px'}}>gavel</span>
-                                    <h4>Критическая Инфраструктура</h4>
-                                    <p>Максимальный уровень защиты данных, устойчивость к сложным APT-атакам и обязательная сертификация для государственного сектора. </p>
-                                </div>
-                            </AnimateOnScroll>
-                        </div>
+    <AnimateOnScroll>
+        <div className="audience-card">
+            <h4>Малый и Средний Бизнес</h4>
+            <p>Готовая, модульная защита без привлечения штатных специалистов. Простая интеграция и низкая стоимость владения.</p>
+        </div>
+    </AnimateOnScroll>
+    <AnimateOnScroll>
+        <div className="audience-card">
+            <h4>Крупный Корпоративный Сегмент</h4>
+            <p>Централизованное управление безопасностью, глубокий анализ угроз и полное соответствие международным комплаенс-требованиям.</p>
+        </div>
+    </AnimateOnScroll>
+    <AnimateOnScroll>
+        <div className="audience-card">
+            <h4>Критическая Инфраструктура</h4>
+            <p>Максимальный уровень защиты данных, устойчивость к сложным APT-атакам и обязательная сертификация для государственного сектора.</p>
+        </div>
+    </AnimateOnScroll>
+</div>
                         
                         {/* 7. ПАРТНЕРЫ */}
                         <div className="partners-subtitle-container is-visible" id="партнерство">
